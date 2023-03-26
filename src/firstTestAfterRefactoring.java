@@ -1,7 +1,5 @@
 import Libs.CoreTestCase;
-import Libs.UI.ArticlePageObject;
-import Libs.UI.MainPageObject_Methods;
-import Libs.UI.SearchPageObject;
+import Libs.UI.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -78,99 +76,24 @@ public void testCompareArticleTitle()
     @Test
     public void testAddArticleInListAndDelete()
     {
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-                "not find button Skip",
-                3
-        );
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.skipTutorial();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Appium");
+        SearchPageObject.clickByArticlWithSubstring("Automation for Apps");
 
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Search Wikipedia"),
-                "not find input to search",
-                3
-        );
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject.waitForTitleElement();
 
-        MainPageObject_Methods.waitElementAndSendKeys(
-                By.id("Search Wikipedia"),
-                "Appium",
-                "not find input to send keys",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Automation for Apps"),
-                "not find Article by request",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Save for later"),
-                "not find button Save for later",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeApplication[@name=\"Wikipedia\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage"),
-                "not find button Add at list",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Create a new list\"]"),
-                "not find button Create new List",
-                3
-        );
-        MainPageObject_Methods.waitElementAndSendKeys(
-                By.xpath("//XCUIElementTypeApplication[@name=\"Wikipedia\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeTextField"),
-                "For read later",
-                "not find input to send Name of list",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Create reading list\"]"),
-                "not find button Create reading List",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Back"),
-                "not find button Back",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
-                "not find button Cancel",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Saved"),
-                "not find button Saved",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Close"),
-                "not find button Close in popup",
-                3
-        );
-        MainPageObject_Methods.waitElementPresent(
-                By.id("For read later"),
-                "Not find List in Saved",
-                3
-        );
-        MainPageObject_Methods.swipeElementToLeft(
-                By.id("For read later"),
-                "not find article to swipe for delete"
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("swipe action delete"),
-                "not find button Delete",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Unsave"),
-                "not find button Unsave",
-                3
-        );
-        MainPageObject_Methods.waitElementPresent(
-                By.id("No saved pages yet"),
-                "List is not empty",
-                3
-        );
+        String nameOfList = "For read later";
+        ArticlePageObject.addArticleAtMyList(nameOfList);
+
+        NavigationUI NavigationUI = new NavigationUI(driver);
+        NavigationUI.exitInMainMenu();
+
+        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        MyListsPageObject.openListsForReadLater(nameOfList);
+        MyListsPageObject.swipeListForDelete(nameOfList);
 
 
     }
