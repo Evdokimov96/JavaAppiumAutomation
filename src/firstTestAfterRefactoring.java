@@ -1,4 +1,5 @@
 import Libs.CoreTestCase;
+import Libs.UI.ArticlePageObject;
 import Libs.UI.MainPageObject_Methods;
 import Libs.UI.SearchPageObject;
 import org.junit.Assert;
@@ -43,37 +44,15 @@ public class firstTestAfterRefactoring extends CoreTestCase {
 @Test
 public void testCompareArticleTitle()
 {
-    MainPageObject_Methods.waitElementAndClick(
-            By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-            "not find button Skip",
-            3
-    );
-    MainPageObject_Methods.waitElementAndClick(
-            By.id("Search Wikipedia"),
-            "not find input to search",
-            3
-    );
+    SearchPageObject SearchPageObject = new SearchPageObject(driver);
+    SearchPageObject.skipTutorial();
+    SearchPageObject.initSearchInput();
+    SearchPageObject.typeSearchLine("Appium");
+    SearchPageObject.clickByArticlWithSubstring("Automation for Apps");
 
-    MainPageObject_Methods.waitElementAndSendKeys(
-            By.id("Search Wikipedia"),
-            "Appium",
-            "not find input to send keys",
-            3
-    );
-    MainPageObject_Methods.waitElementAndClick(
-            By.id("Automation for Apps"),
-            "not find search result",
-            3
+    ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+    String article_text = ArticlePageObject.getArticleTitle();
 
-    );
-    WebElement titleElement = MainPageObject_Methods.waitElementPresent(
-            By.id("The program was"),
-            "not find text in page",
-            15
-    );
-
-    String article_text = titleElement.getAttribute(
-            "text");
     Assert.assertEquals(
             "unexpected text",
             "The program was",
@@ -84,33 +63,15 @@ public void testCompareArticleTitle()
     @Test
     public void testSwipeArticle()
     {
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-                "not find button Skip",
-                3
-        );
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.skipTutorial();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Appium");
+        SearchPageObject.clickByArticlWithSubstring("Automation for Apps");
 
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Search Wikipedia"),
-                "not find input to search",
-                3
-        );
-
-        MainPageObject_Methods.waitElementAndSendKeys(
-                By.id("Search Wikipedia"),
-                "Appium",
-                "not find input to send keys",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Automation for Apps"),
-                "not find input to search",
-                3
-        );
-        MainPageObject_Methods.swipeAndFindElement(By.xpath("//XCUIElementTypeStaticText[@name=\"View article in browser\"]"),
-                "can`t find end of article",
-                5
-        );
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject.waitForTitleElement();
+        ArticlePageObject.swipeToFooter();
 
     }
 
