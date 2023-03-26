@@ -1,12 +1,14 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
+import javafx.scene.transform.Rotate;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,116 +37,116 @@ public class FirstTest {
         driver.quit();
     }
 
-//    @Test
-//    public void testSeachAndClear()
-//    {
-//        waitElementAndClick(
-//                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-//                "not find button Skip",
-//                3
-//        );
-//        waitElementAndClick(
-//                By.id("Search Wikipedia"),
-//                "not find input to search",
-//                3
-//        );
-//
-//        waitElementAndSendKeys(
-//                By.id("Search Wikipedia"),
-//                "Java",
-//                "not find input to send keys",
-//                3
-//        );
-//
-//        waitForElementAndClear(
-//                By.id("Search Wikipedia"),
-//                "not find request for clear",
-//                3
-//        );
-//        waitElementAndClick(
-//                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
-//                "not find button Cancel on page",
-//                3
-//        );
-//        waitElementNotPresent(
-//                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
-//                "found button Cancel on page",
-//                3
-//        );
-//    }
+    @Test
+    public void testSeachAndClear()
+    {
+        waitElementAndClick(
+                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
+                "not find button Skip",
+                3
+        );
+        waitElementAndClick(
+                By.id("Search Wikipedia"),
+                "not find input to search",
+                3
+        );
 
-//@Test
-//public void testCompareArticleTitle()
-//{
-//    waitElementAndClick(
-//            By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-//            "not find button Skip",
-//            3
-//    );
-//    waitElementAndClick(
-//            By.id("Search Wikipedia"),
-//            "not find input to search",
-//            3
-//    );
-//
-//    waitElementAndSendKeys(
-//            By.id("Search Wikipedia"),
-//            "Appium",
-//            "not find input to send keys",
-//            3
-//    );
-//    waitElementAndClick(
-//            By.id("Automation for Apps"),
-//            "not find input to search",
-//            3
-//
-//    );
-//    WebElement titleElement = waitElementPresent(
-//            By.id("The program was"),
-//            "not find text in page",
-//            15
-//    );
-//
-//    String article_text = titleElement.getAttribute("value");
-//    Assert.assertEquals(
-//            "unexpected text",
-//            "The program was",
-//            article_text
-//    );
-//    }
+        waitElementAndSendKeys(
+                By.id("Search Wikipedia"),
+                "Java",
+                "not find input to send keys",
+                3
+        );
 
-//    @Test
-//    public void swipeArticle()
-//    {
-//        waitElementAndClick(
-//                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-//                "not find button Skip",
-//                3
-//        );
-//
-//        waitElementAndClick(
-//                By.id("Search Wikipedia"),
-//                "not find input to search",
-//                3
-//        );
-//
-//        waitElementAndSendKeys(
-//                By.id("Search Wikipedia"),
-//                "Appium",
-//                "not find input to send keys",
-//                3
-//        );
-//        waitElementAndClick(
-//                By.id("Automation for Apps"),
-//                "not find input to search",
-//                3
-//        );
-//        swipeAndFindElement(By.xpath("//XCUIElementTypeStaticText[@name=\"View article in browser\"]"),
-//                "can`t find end of article",
-//                5
-//        );
-//
-//    }
+        waitForElementAndClear(
+                By.id("Search Wikipedia"),
+                "not find request for clear",
+                3
+        );
+        waitElementAndClick(
+                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
+                "not find button Cancel on page",
+                3
+        );
+        waitElementNotPresent(
+                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
+                "found button Cancel on page",
+                3
+        );
+    }
+
+@Test
+public void testCompareArticleTitle()
+{
+    waitElementAndClick(
+            By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
+            "not find button Skip",
+            3
+    );
+    waitElementAndClick(
+            By.id("Search Wikipedia"),
+            "not find input to search",
+            3
+    );
+
+    waitElementAndSendKeys(
+            By.id("Search Wikipedia"),
+            "Appium",
+            "not find input to send keys",
+            3
+    );
+    waitElementAndClick(
+            By.id("Automation for Apps"),
+            "not find input to search",
+            3
+
+    );
+    WebElement titleElement = waitElementPresent(
+            By.id("The program was"),
+            "not find text in page",
+            15
+    );
+
+    String article_text = titleElement.getAttribute("value");
+    Assert.assertEquals(
+            "unexpected text",
+            "The program was",
+            article_text
+    );
+    }
+
+    @Test
+    public void swipeArticle()
+    {
+        waitElementAndClick(
+                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
+                "not find button Skip",
+                3
+        );
+
+        waitElementAndClick(
+                By.id("Search Wikipedia"),
+                "not find input to search",
+                3
+        );
+
+        waitElementAndSendKeys(
+                By.id("Search Wikipedia"),
+                "Appium",
+                "not find input to send keys",
+                3
+        );
+        waitElementAndClick(
+                By.id("Automation for Apps"),
+                "not find input to search",
+                3
+        );
+        swipeAndFindElement(By.xpath("//XCUIElementTypeStaticText[@name=\"View article in browser\"]"),
+                "can`t find end of article",
+                5
+        );
+
+    }
 
     @Test
     public void addArticleInListAndDelete()
@@ -169,7 +171,7 @@ public class FirstTest {
         );
         waitElementAndClick(
                 By.id("Automation for Apps"),
-                "not find input to search",
+                "not find Article by request",
                 3
         );
         waitElementAndClick(
@@ -320,6 +322,102 @@ public class FirstTest {
         );
 
     }
+    @Test
+    public void testForRotation()
+    {
+        waitElementAndClick(
+                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
+                "not find button Skip",
+                3
+        );
+
+        waitElementAndClick(
+                By.id("Search Wikipedia"),
+                "not find input to search",
+                3
+        );
+
+        String searchRequest = "appium";
+
+        waitElementAndSendKeys(
+                By.id("Search Wikipedia"),
+                searchRequest,
+                "not find input to send keys",
+                3
+        );
+        waitElementAndClick(
+                By.id("Automation for Apps"),
+                "not find Article by request" + searchRequest,
+                3
+        );
+        String title_before_rotation = waitForElementAndGetAttribute(
+                By.xpath("(//XCUIElementTypeStaticText[@name=\"Appium\"])[1]"),
+                "name",
+                "Can`t find title of Article",
+                5
+        );
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+
+        String title_after_rotation = waitForElementAndGetAttribute(
+                By.xpath("(//XCUIElementTypeStaticText[@name=\"Appium\"])[1]"),
+                "name",
+                "Can`t find title of Article",
+                5
+        );
+        Assert.assertEquals(
+                "title not equals after rotation",
+                title_before_rotation,
+                title_after_rotation
+        );
+        driver.rotate(ScreenOrientation.PORTRAIT);
+
+        String title_after_second_rotation = waitForElementAndGetAttribute(
+                By.xpath("(//XCUIElementTypeStaticText[@name=\"Appium\"])[1]"),
+                "name",
+                "Can`t find title of Article",
+                5
+        );
+        Assert.assertEquals(
+                "title not equals after second rotation",
+                title_after_rotation,
+                title_after_second_rotation
+        );
+
+    }
+    @Test
+    public void testExitOnBackground()
+    {
+        waitElementAndClick(
+                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
+                "not find button Skip",
+                3
+        );
+
+        waitElementAndClick(
+                By.id("Search Wikipedia"),
+                "not find input to search",
+                3
+        );
+
+        waitElementAndSendKeys(
+                By.id("Search Wikipedia"),
+                "Appium",
+                "not find input to send keys",
+                3
+        );
+        waitElementPresent(
+                By.id("Automation for Apps"),
+                "not find input to search",
+                3
+        );
+        driver.runAppInBackground(3);
+
+        waitElementPresent(
+                By.id("Automation for Apps"),
+                "not find article after returning from background",
+                3
+        );
+    }
 
 
 
@@ -451,6 +549,13 @@ public class FirstTest {
            throw new AssertionError(default_message + "" + error_message);
         }
     }
+    // Метод.Получение аттрибута элемента
+    private String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds){
+
+        WebElement element = waitElementPresent(by,error_message, timeoutInSeconds);
+        return element.getAttribute(attribute);
+    }
+
 }
 
 
