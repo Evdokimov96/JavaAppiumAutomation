@@ -1,7 +1,6 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
-import javafx.scene.transform.Rotate;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
 import java.util.List;
 
-public class FirstTest {
+public class FirstTest_before_refactoring {
     private AppiumDriver driver;
 
     @Before
