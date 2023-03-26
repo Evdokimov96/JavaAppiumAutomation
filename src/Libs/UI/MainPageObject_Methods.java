@@ -139,7 +139,7 @@ public class MainPageObject_Methods
     {
         int amount_of_elements = getAmountOfArticle(by);
         if (amount_of_elements > 0) {
-            String default_message = "An elements" + by.toString() + "suppoused to be not present";
+            String default_message = "An elements" + by.toString() + "supposed to be not present";
             throw new AssertionError(default_message + "" + error_message);
         }
     }

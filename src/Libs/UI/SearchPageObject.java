@@ -1,6 +1,7 @@
 package Libs.UI;
 
 import io.appium.java_client.AppiumDriver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class SearchPageObject extends MainPageObject_Methods
@@ -9,7 +10,9 @@ public class SearchPageObject extends MainPageObject_Methods
         SKIP_TUTORIAL = "//XCUIElementTypeStaticText[@name=\"Skip\"]",
         SEARCH_INPUT = "Search Wikipedia",
         SEARCH_RESULT_BY_SUBSTRING_TPL = "SUBSTRING",
-        SEARCH_CANCEL_BUTTON = "//XCUIElementTypeStaticText[@name=\"Cancel\"]";
+        SEARCH_CANCEL_BUTTON = "//XCUIElementTypeStaticText[@name=\"Cancel\"]",
+        search_locator = "//XCUIElementTypeCollectionView/XCUIElementTypeOther",
+        empty_result_label = "No results found";
 
     public SearchPageObject(AppiumDriver driver)
    {
@@ -67,7 +70,29 @@ public class SearchPageObject extends MainPageObject_Methods
         String search_result_id = getResultSearchElement(substring);
         this.waitElementAndClick(By.id(search_result_id),"not find and click search result with substring" + substring,3);
     }
+    public int getAmountOfFoundArticles()
+    {
+        this.waitElementPresent(
+                By.xpath(search_locator),
+                "uncorrected search_locator" + search_locator,
+                10
+        );
+        return this.getAmountOfArticle(By.xpath(search_locator));
 
-
-
+    }
+    public void waitForEmptyResultsLabel()
+    {
+        this.waitElementPresent(
+                By.id(empty_result_label),
+                "not find empty result by the request ",
+                10
+        );
+    }
+    public void waitForNotEmptyResultsLabel()
+    {
+        this.assertElementNotPresent(
+                By.id(search_locator),
+                "we found any article by request"
+        );
+    }
 }
