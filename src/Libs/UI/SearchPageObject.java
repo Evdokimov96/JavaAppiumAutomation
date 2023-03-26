@@ -8,7 +8,8 @@ public class SearchPageObject extends MainPageObject_Methods
     private static final String
         SKIP_TUTORIAL = "//XCUIElementTypeStaticText[@name=\"Skip\"]",
         SEARCH_INPUT = "Search Wikipedia",
-        SEARCH_RESULT_BY_SUBSTRING_TPL = "SUBSTRING";
+        SEARCH_RESULT_BY_SUBSTRING_TPL = "SUBSTRING",
+        SEARCH_CANCEL_BUTTON = "//XCUIElementTypeStaticText[@name=\"Cancel\"]";
 
     public SearchPageObject(AppiumDriver driver)
    {
@@ -45,5 +46,20 @@ public class SearchPageObject extends MainPageObject_Methods
        String search_result_id = getResultSearchElement(substring);
        this.waitElementPresent(By.id(search_result_id),"not find search result with substring" + substring,3);
    }
+
+   public void  waitForCancelButtonToAppear()
+   {
+    this.waitElementPresent(By.xpath(SEARCH_CANCEL_BUTTON),"not find button Cancel on page",3);
+   }
+
+    public void  waitForCancelButtonToDisappear()
+    {
+        this.waitElementNotPresent(By.xpath(SEARCH_CANCEL_BUTTON),"button Cancel on page",3);
+    }
+
+    public void clickCancelButton()
+    {
+        this.waitElementAndClick(By.xpath(SEARCH_CANCEL_BUTTON),"not find button Cancel to click",3);
+    }
 
 }

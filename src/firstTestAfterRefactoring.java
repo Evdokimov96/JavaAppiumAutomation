@@ -30,39 +30,13 @@ public class firstTestAfterRefactoring extends CoreTestCase {
     @Test
     public void testSearchAndClear()
     {
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Skip\"]"),
-                "not find button Skip",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.id("Search Wikipedia"),
-                "not find input to search",
-                3
-        );
-
-        MainPageObject_Methods.waitElementAndSendKeys(
-                By.id("Search Wikipedia"),
-                "Java",
-                "not find input to send keys",
-                3
-        );
-
-        MainPageObject_Methods.waitForElementAndClear(
-                By.id("Search Wikipedia"),
-                "not find request for clear",
-                3
-        );
-        MainPageObject_Methods.waitElementAndClick(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
-                "not find button Cancel on page",
-                3
-        );
-        MainPageObject_Methods.waitElementNotPresent(
-                By.xpath("//XCUIElementTypeStaticText[@name=\"Cancel\"]"),
-                "found button Cancel on page",
-                3
-        );
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.skipTutorial();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Appium");
+        SearchPageObject.waitForCancelButtonToAppear();
+        SearchPageObject.clickCancelButton();
+        SearchPageObject.waitForCancelButtonToDisappear();
 
     }
 
