@@ -1,5 +1,6 @@
 import Libs.CoreTestCase;
 import Libs.UI.MainPageObject_Methods;
+import Libs.UI.SearchPageObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -14,6 +15,16 @@ public class firstTestAfterRefactoring extends CoreTestCase {
     {
         super.setUp();
         MainPageObject_Methods = new MainPageObject_Methods(driver);
+    }
+
+    @Test
+    public void testSearchArticle()
+    {
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.skipTutorial();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Appium");
+        SearchPageObject.waitForSearchResult("Automation for Apps");
     }
 
     @Test
@@ -52,6 +63,7 @@ public class firstTestAfterRefactoring extends CoreTestCase {
                 "found button Cancel on page",
                 3
         );
+
     }
 
 @Test
@@ -76,7 +88,7 @@ public void testCompareArticleTitle()
     );
     MainPageObject_Methods.waitElementAndClick(
             By.id("Automation for Apps"),
-            "not find input to search",
+            "not find search result",
             3
 
     );
