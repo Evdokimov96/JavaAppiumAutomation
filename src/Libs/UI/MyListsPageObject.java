@@ -1,17 +1,16 @@
 package Libs.UI;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 
 public class MyListsPageObject extends MainPageObject_Methods
 {
     private static final String
-            NAME_OF_LIST = "Text",
-            BUTTON_SAVED = "Saved",
-            BUTTON_CLOSE = "Close",
-            BUTTON_DELETE = "swipe action delete",
-            BUTTON_UNSAVE = "Unsave",
-            TEXT_OF_ZAGLUSHKA = "No saved pages yet";
+            NAME_OF_LIST = "id:Text",
+            BUTTON_SAVED = "id:Saved",
+            BUTTON_CLOSE = "id:Close",
+            BUTTON_DELETE = "id:swipe action delete",
+            BUTTON_UNSAVE = "id:Unsave",
+            TEXT_OF_ZAGLUSHKA = "id:No saved pages yet";
 
 
     private static String getNameOfListByID(String nameOfList)
@@ -27,17 +26,17 @@ public class MyListsPageObject extends MainPageObject_Methods
     public void openListsForReadLater(String nameOfList)
     {
         this.waitElementAndClick(
-                By.id(BUTTON_SAVED),
+                BUTTON_SAVED,
                 "not find button Saved",
                 3
         );
         this.waitElementAndClick(
-                By.id(BUTTON_CLOSE),
+                BUTTON_CLOSE,
                 "not find button Close in popup",
                 3
         );
         this.waitElementPresent(
-                By.id(nameOfList),
+                nameOfList,
                 "Not find List in Saved",
                 3
         );
@@ -50,21 +49,21 @@ public class MyListsPageObject extends MainPageObject_Methods
         String list_name_id = getNameOfListByID(nameOfList);
 
         this.swipeElementToLeft(
-                By.id(list_name_id),
+                list_name_id,
                 "not find article to swipe for delete"
         );
         this.waitElementAndClick(
-                By.id(BUTTON_DELETE),
+                BUTTON_DELETE,
                 "not find button Delete",
                 3
         );
         this.waitElementAndClick(
-                By.id(BUTTON_UNSAVE),
+                BUTTON_UNSAVE,
                 "not find button Unsave",
                 3
         );
         this.waitElementPresent(
-                By.id(TEXT_OF_ZAGLUSHKA),
+                TEXT_OF_ZAGLUSHKA,
                 "List is not empty",
                 3
         );

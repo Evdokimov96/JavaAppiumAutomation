@@ -1,13 +1,12 @@
 package Libs.UI;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
 
 public class NavigationUI extends MainPageObject_Methods{
 
     private static final String
-            BACK = "Back",
-            CANCEL = "//XCUIElementTypeStaticText[@name=\"Cancel\"]";
+            BACK = "id:Back",
+            CANCEL = "xpath://XCUIElementTypeStaticText[@name=\"Cancel\"]";
 
 
     public NavigationUI(AppiumDriver driver)
@@ -17,12 +16,12 @@ public class NavigationUI extends MainPageObject_Methods{
     public void exitInMainMenu()
     {
         this.waitElementAndClick(
-                By.id(BACK),
+                BACK,
                 "not find button Back",
                 3
         );
         this.waitElementAndClick(
-                By.xpath(CANCEL),
+                CANCEL,
                 "not find button Cancel",
                 3
         );
